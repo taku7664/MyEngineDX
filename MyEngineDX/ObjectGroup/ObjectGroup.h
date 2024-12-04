@@ -1,6 +1,8 @@
 #pragma once
 #include "Object/Object.h"
 
+class DXWorld;
+
 class ObjectGroup
 	: public Engine::IEngineCycle
 	, public Engine::Entity
@@ -17,7 +19,14 @@ public:
 	virtual void PreRender() override;
 	virtual void Render() override;
 	virtual void PostRender() override;
+public:
+	void SetListSize(UINT _size);
+public:
+	void SetOwner(DXWorld* _ownerWorld);
+	const DXWorld* GetOwner() { return mOwnerWorld; }
+	std::vector<GameObject*>& GetObjects() { return mObjects; }
 private:
+	DXWorld* mOwnerWorld;
 	std::vector<GameObject*> mObjects;
 };
 

@@ -144,18 +144,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application\Application.h" />
+    <ClInclude Include="Helper\CommonDef.h" />
+    <ClInclude Include="Helper\CommonEnum.h" />
+    <ClInclude Include="GameManager\GameManager.h" />
     <ClInclude Include="Helper\Entity\Entity.h" />
+    <ClInclude Include="Helper\Factory\Factory.h" />
     <ClInclude Include="Interface\IEngineCycle.h" />
     <ClInclude Include="Object\Object.h" />
     <ClInclude Include="ObjectGroup\ObjectGroup.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Helper\Transform\Transform3D.h" />
+    <ClInclude Include="TimeManager\Time.h" />
+    <ClInclude Include="World\WorldManager.h" />
     <ClInclude Include="World\World.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\Application.cpp" />
-    <ClCompile Include="Helper\CommonEnum.h" />
+    <ClCompile Include="Helper\CommonDef.cpp" />
+    <ClCompile Include="Helper\CommonEnum.cpp" />
+    <ClCompile Include="GameManager\GameManager.cpp" />
     <ClCompile Include="Helper\Entity\Entity.cpp" />
+    <ClCompile Include="Helper\Factory\Factory.cpp" />
     <ClCompile Include="Interface\IEngineCycle.cpp" />
     <ClCompile Include="Object\Object.cpp" />
     <ClCompile Include="ObjectGroup\ObjectGroup.cpp" />
@@ -164,6 +173,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Helper\Transform\Transform3D.cpp" />
+    <ClCompile Include="TimeManager\Time.cpp" />
+    <ClCompile Include="World\WorldManager.cpp" />
     <ClCompile Include="World\World.cpp" />
   </ItemGroup>
   <ItemGroup>

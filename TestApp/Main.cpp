@@ -10,8 +10,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         1024, 768,              // 윈도우 크기
         WS_OVERLAPPEDWINDOW);   // 윈도우 스타일
 
-    App.Initialize();
-    App.Run();
+    if (App.Initialize())
+    {
+        App.Run();
+    }
     App.Finalization();
 
     return 0;

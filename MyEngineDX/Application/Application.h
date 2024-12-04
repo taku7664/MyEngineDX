@@ -1,5 +1,6 @@
 #pragma once
-#include <Windows.h>
+#include "pch.h"
+#include "GameManager/GameManager.h"
 
 namespace Engine
 {
@@ -14,15 +15,13 @@ namespace Engine
 		Application(Application&&) noexcept = default;
 		Application& operator=(Application&&) noexcept = default;
 	public:
-		virtual void Initialize() final;
+		virtual BOOL Initialize() final;
 		virtual void Run() final;
 		virtual void Finalization() final;
-	public:
-		void ShutDown();
 	protected:
 		// 사용자 정의
-		virtual void OnPreInitialize() {};
-		virtual void OnPostInitialize() {};
+		virtual BOOL OnPreInitialize() { return FALSE; };
+		virtual BOOL OnPostInitialize() { return FALSE; };
 		virtual void OnPreFinalization() {};
 		virtual void OnPostFinalization() {};
 
@@ -31,7 +30,13 @@ namespace Engine
 		virtual void OnFixedUpdate() {};
 		virtual void OnPreRender() {};
 		virtual void OnPostRender() {};
+	public:
+		BOOL IsShutdown;
+		void ShutDown();
+
+		auto* GetGameManager() { return mGameManager; }
 	private:
 		HINSTANCE mHInstance;
+		GameManager* mGameManager;
 	};
 }

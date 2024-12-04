@@ -1,3 +1,5 @@
+#pragma once
+
 #define _INTERFACE 
 #define _ABSTRACT
 #define _CALLBACK

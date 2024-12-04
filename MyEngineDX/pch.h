@@ -1,5 +1,4 @@
 #pragma once
-#include "../Common/Common.h"
 
 #include <windows.h>
 #include <filesystem>
@@ -30,9 +29,15 @@
 #include <imgui_impl_win32.h>
 #include <imgui_impl_dx11.h>
 
+#include "../Common/Common.h"
 #include "Helper/CommonEnum.h"
+#include "Helper/CommonDef.h"
+
+#include "TimeManager/Time.h"
 #include "Helper/Transform/Transform3D.h"
+
+#include "Interface/IEngineCycle.h"
 #include "Helper/Entity/Entity.h"
 #include "Helper/Factory/Factory.h"
-#include "Interface/IEngineCycle.h"
+
 

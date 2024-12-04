@@ -2,7 +2,7 @@
 
 namespace Engine
 {
-	class IEngineCycle _INTERFACE
+	class IEngineCycle
 	{
 		virtual void FixedUpdate() = 0;
 		virtual void PreUpdate() = 0;

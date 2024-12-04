@@ -2,7 +2,7 @@
 
 namespace Engine
 {
-	class Entity _ABSTRACT
+	class Entity
 	{
 	public:
 		void SetName(std::wstring_view _name) { m_name = _name; }
@@ -19,11 +19,9 @@ namespace Engine
 
 		EntityState	 m_state;
 
-		Entity() : m_name(L""), m_tag(L""), m_state(EntityState::Create) { OnCreate(); }
+		Entity() : m_name(L""), m_tag(L""), m_state(EntityState::Create) {}
 		Entity(std::wstring_view _name, std::wstring_view _tag)
-			: m_name(_name), m_tag(_tag), m_state(EntityState::Create) {
-			OnCreate();
-		}
+			: m_name(_name), m_tag(_tag), m_state(EntityState::Create) {}
 	protected:
 		virtual void _CALLBACK OnEnable() {};
 		virtual void _CALLBACK OnDisable() {};

@@ -4,10 +4,11 @@
 class TestApp : public Engine::Application
 {
 public:
+	static TestApp* Instance;
 	using Application::Application;
 protected:
-	virtual void OnPreInitialize() override final;
-	virtual void OnPostInitialize() override final;
+	virtual BOOL OnPreInitialize() override final;
+	virtual BOOL OnPostInitialize() override final;
 	virtual void OnPreFinalization() override final;
 	virtual void OnPostFinalization() override final;
 };

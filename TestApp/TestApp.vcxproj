@@ -136,9 +136,13 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="TestApp.cpp" />
+    <ClCompile Include="Script\TestScript.cpp" />
+    <ClCompile Include="World\TestWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestApp.h" />
+    <ClInclude Include="Script\TestScript.h" />
+    <ClInclude Include="World\TestWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

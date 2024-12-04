@@ -3,4 +3,4 @@
 #include <directxtk/SimpleMath.h>
 using namespace DirectX::SimpleMath;
 
-#include "ComDef.h"
+#include "CommonDef.h"

@@ -1,20 +1,16 @@
 #pragma once
+#include "World/WorldManager.h"
 
-namespace Engine
-{
-	class IEngineCycle;
-	class Entity;
-	template <class T>
-	class EntityFactory;
-}
-
-class GameObject
+class GameManager
 	: public Engine::IEngineCycle
-	, public Engine::Entity
 {
 public:
-	GameObject();
-	~GameObject();
+	GameManager();
+	~GameManager() = default;
+public:
+	BOOL Initialize();
+	void Run();
+	void Finalization();
 public:
 	virtual void FixedUpdate() override;
 	virtual void PreUpdate() override;
@@ -23,5 +19,12 @@ public:
 	virtual void PreRender() override;
 	virtual void Render() override;
 	virtual void PostRender() override;
+public:
+
+public:
+	auto* GetWorldManager() { return mWorldManager; }
 private:
+	WorldManager* mWorldManager;
+
+	float mFixedUpdateTick;
 };
