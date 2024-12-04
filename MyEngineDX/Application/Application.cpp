@@ -20,4 +20,7 @@ namespace Engine
 		OnPreFinalization();
 		OnPostFinalization();
 	}
+	void Application::ShutDown()
+	{
+	}
 }

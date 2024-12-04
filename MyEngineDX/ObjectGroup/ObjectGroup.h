@@ -1,14 +1,14 @@
 #pragma once
-#include "ObjectGroup/ObjectGroup.h"
+#include "Object/Object.h"
 
-class DXWorld 
+class ObjectGroup
 	: public Engine::IEngineCycle
 	, public Engine::Entity
-	, public Engine::EntityFactory<ObjectGroup>
 {
 public:
-	DXWorld();
-	virtual ~DXWorld();
+	ObjectGroup();
+	ObjectGroup(std::wstring_view _name, std::wstring_view _tag);
+	~ObjectGroup();
 public:
 	virtual void FixedUpdate() override;
 	virtual void PreUpdate() override;
@@ -17,9 +17,7 @@ public:
 	virtual void PreRender() override;
 	virtual void Render() override;
 	virtual void PostRender() override;
-public:
-	BOOL CreateObjectGroup(std::wstring_view _name, std::wstring_view _tag);
 private:
-	Transform3D* mWorldTransform;
-	std::unordered_map<std::wstring, ObjectGroup*> mObjectGroups;
+	std::vector<GameObject*> mObjects;
 };
+
