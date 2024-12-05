@@ -34,7 +34,7 @@ public:
 	virtual void _CALLBACK OnRender() {};
 	virtual void _CALLBACK OnPostRender() {};
 public:
-	BOOL		 CreateObjectGroup(std::wstring_view _name, std::wstring_view _tag);
+	ObjectGroup* CreateObjectGroup(std::wstring_view _name, std::wstring_view _tag);
 	ObjectGroup* GetObjectGroup(std::wstring_view _name);
 private:
 	Transform3D* mWorldTransform;

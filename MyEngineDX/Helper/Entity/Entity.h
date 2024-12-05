@@ -5,27 +5,27 @@ namespace Engine
 	class Entity
 	{
 	public:
-		void SetName(std::wstring_view _name) { m_name = _name; }
-		void SetTag(std::wstring_view _tag) { m_tag = _tag; }
-		void SetActive(bool _isActive);
-		void SetDestroy();
-
-		const std::wstring& GetName() { return m_name; }
-		const std::wstring& GetTag() { return m_name; }
-		const EntityState&  GetState() { return m_state; }
-	protected:
-		std::wstring m_name;
-		std::wstring m_tag;
-
-		EntityState	 m_state;
-
-		Entity() : m_name(L""), m_tag(L""), m_state(EntityState::Create) {}
+		Entity() : mName(L""), mTag(L""), mState(EntityState::Create) {}
 		Entity(std::wstring_view _name, std::wstring_view _tag)
-			: m_name(_name), m_tag(_tag), m_state(EntityState::Create) {}
+			: mName(_name), mTag(_tag), mState(EntityState::Create) {
+		}
 	protected:
 		virtual void _CALLBACK OnEnable() {};
 		virtual void _CALLBACK OnDisable() {};
 		virtual void _CALLBACK OnCreate() {};
 		virtual void _CALLBACK OnDestroy() {};
+	protected:
+		std::wstring mName;
+		std::wstring mTag;
+		EntityState	 mState;
+	public:
+		void SetName(std::wstring_view _name) { mName = _name; }
+		void SetTag(std::wstring_view _tag) { mTag = _tag; }
+		void SetActive(bool _isActive);
+		void SetDestroy();
+
+		const std::wstring& GetName()	 { return mName; }
+		const std::wstring& GetTag()	 { return mTag; }
+		const EntityState&  GetState()	 { return mState; }
 	};
 }

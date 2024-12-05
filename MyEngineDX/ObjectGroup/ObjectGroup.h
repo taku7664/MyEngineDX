@@ -20,13 +20,17 @@ public:
 	virtual void Render() override;
 	virtual void PostRender() override;
 public:
+	GameObject* CreateObject(std::wstring_view _name, std::wstring_view _tag);
+	const std::vector<GameObject*>& GetObjects() { return mObjects; }
 	void SetListSize(UINT _size);
-public:
-	void SetOwner(DXWorld* _ownerWorld);
-	const DXWorld* GetOwner() { return mOwnerWorld; }
-	std::vector<GameObject*>& GetObjects() { return mObjects; }
 private:
 	DXWorld* mOwnerWorld;
 	std::vector<GameObject*> mObjects;
+
+	std::queue<GameObject*> mCreateQueue;
+	std::queue<GameObject*> mDestroyQueue;
+public:
+	void SetOwner(DXWorld* _ownerWorld);
+	const DXWorld* GetOwner() { return mOwnerWorld; }
 };
 

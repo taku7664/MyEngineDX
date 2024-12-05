@@ -144,6 +144,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application\Application.h" />
+    <ClInclude Include="Component\Component.h" />
+    <ClInclude Include="Component\MonoBehaviour.h" />
+    <ClInclude Include="Component\Script\Script.h" />
     <ClInclude Include="Helper\CommonDef.h" />
     <ClInclude Include="Helper\CommonEnum.h" />
     <ClInclude Include="GameManager\GameManager.h" />
@@ -160,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\Application.cpp" />
+    <ClCompile Include="Component\Component.cpp" />
+    <ClCompile Include="Component\MonoBehaviour.cpp" />
+    <ClCompile Include="Component\Script\Script.cpp" />
     <ClCompile Include="Helper\CommonDef.cpp" />
     <ClCompile Include="Helper\CommonEnum.cpp" />
     <ClCompile Include="GameManager\GameManager.cpp" />

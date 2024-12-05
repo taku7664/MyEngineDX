@@ -85,12 +85,15 @@ void WorldManager::PostRender()
 			itr = mWorlds.erase(itr);
 			continue;
 		}
+		else ++itr;
 	}
 
 	{ // 생성 주기
 		while (!mCreateQueue.empty())
 		{
-			mWorlds[mCreateQueue.front()->GetName()] = mCreateQueue.front();
+			DXWorld* instance = mCreateQueue.front();
+			mWorlds[instance->GetName()] = instance;
+			instance->SetActive(true);
 			mCreateQueue.pop();
 		}
 	}

@@ -1,4 +1,5 @@
 #include "TestWorld.h"
+#include "../Script/TestScript.h"
 
 void _CALLBACK TestWorld::OnEnable()
 {
@@ -24,6 +25,12 @@ void _CALLBACK TestWorld::OnDestroy()
 void _CALLBACK TestWorld::OnLoad()
 {
 	int a = 0;
+	ObjectGroup* testGroup;
+	GameObject* testObject;
+	testGroup = CreateObjectGroup(L"Test", L"Default");
+	//testGroup = GetObjectGroup(L"Test");
+	testObject = testGroup->CreateObject(L"TestObject_01", L"Default");
+	testObject->AddComponent<TestScript>();
 	return void _CALLBACK();
 }
 

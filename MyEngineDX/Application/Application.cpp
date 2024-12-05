@@ -15,6 +15,8 @@ namespace Engine
 		if (FALSE == mGameManager->Initialize()) return FALSE;
 
 		if (FALSE == OnPostInitialize()) return FALSE;
+
+		return TRUE;
 	}
 	void Application::Run()
 	{

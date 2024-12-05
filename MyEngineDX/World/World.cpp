@@ -31,6 +31,10 @@ void DXWorld::PreUpdate()
 void DXWorld::Update()
 {
 	FOR_LOOP_ENTITY(mObjectGroups, Update());
+	for (auto& a : mObjectGroups)
+	{
+		a.second->Update();
+	}
 }
 
 void DXWorld::PostUpdate()
@@ -45,7 +49,10 @@ void DXWorld::PreRender()
 
 void DXWorld::Render()
 {
-	mWorldTransform->CalculateMatrix();
+	if (mWorldTransform)
+	{
+		mWorldTransform->CalculateMatrix();
+	}
 	FOR_LOOP_ENTITY(mObjectGroups, Render());
 }
 
@@ -72,7 +79,9 @@ void DXWorld::PostRender()
 	{ // 생성 주기
 		while (!mCreateQueue.empty())
 		{
-			mObjectGroups[mCreateQueue.front()->GetName()] = mCreateQueue.front();
+			ObjectGroup* instance = mCreateQueue.front();
+			mObjectGroups[instance->GetName()] = instance;
+			instance->SetActive(true);
 			mCreateQueue.pop();
 		}
 	}
@@ -86,14 +95,14 @@ void DXWorld::PostRender()
 	}
 }
 
-BOOL DXWorld::CreateObjectGroup(std::wstring_view _name, std::wstring_view _tag)
+ObjectGroup* DXWorld::CreateObjectGroup(std::wstring_view _name, std::wstring_view _tag)
 {
 	auto itr = mObjectGroups.find(_name.data());
 	if (itr != mObjectGroups.end()) 
-		return FALSE;
+		return itr->second;
 	ObjectGroup* instance = new ObjectGroup(_name, _tag);
 	mCreateQueue.push(instance);
-	return TRUE;
+	return instance;
 }
 
 ObjectGroup* DXWorld::GetObjectGroup(std::wstring_view _name)

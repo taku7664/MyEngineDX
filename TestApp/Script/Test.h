@@ -1,16 +1,16 @@
 #pragma once
 #include "../TestApp.h"
-#include "Test.h"
 
-class TestScript 
+class Test 
 	: public Component::Script
 {
 public:
 	using::Component::Script::Script;
 public:
 	virtual void Start() override;
-	virtual void Update() override;
+public:
+	void AddCount(int _num) { counter += _num; }
 private:
-	std::vector<Test*> mScripts;
+	int counter = 0;
 };
 

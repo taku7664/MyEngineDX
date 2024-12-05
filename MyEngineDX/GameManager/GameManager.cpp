@@ -46,34 +46,50 @@ void GameManager::Finalization()
 void GameManager::FixedUpdate()
 {
 	static float counter = 0.0f;
+	
 	counter += Time::GetUnScaledDeltaTime();
 	while (counter >= mFixedUpdateTick)
 	{
 		counter -= mFixedUpdateTick;
-		mWorldManager->FixedUpdate();
+		if (mWorldManager)
+		{
+			mWorldManager->FixedUpdate();
+		}
 	}
 }
 
 void GameManager::PreUpdate()
 {
+	if(mWorldManager)
+		mWorldManager->PreUpdate();
 }
 
 void GameManager::Update()
 {
+	if (mWorldManager)
+		mWorldManager->Update();
 }
 
 void GameManager::PostUpdate()
 {
+	if (mWorldManager)
+		mWorldManager->PostUpdate();
 }
 
 void GameManager::PreRender()
 {
+	if (mWorldManager)
+		mWorldManager->PreRender();
 }
 
 void GameManager::Render()
 {
+	if (mWorldManager)
+		mWorldManager->Render();
 }
 
 void GameManager::PostRender()
 {
+	if (mWorldManager)
+		mWorldManager->PostRender();
 }
