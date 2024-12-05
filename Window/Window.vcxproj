@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -140,12 +140,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DisplayDesc.h" />
     <ClInclude Include="IDisplay.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="DisplayDevice.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DisplayDesc.cpp" />
     <ClCompile Include="IDisplay.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="pch.cpp">

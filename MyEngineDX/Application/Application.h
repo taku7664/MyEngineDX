@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "GameManager/GameManager.h"
+#include "../Window/IDisplay.h"
 
 namespace Engine
 {
@@ -8,7 +9,7 @@ namespace Engine
 	{
 	public:
 		explicit Application(HINSTANCE _hInstance, const WCHAR* _title, int _width, int _height, DWORD _style = WS_OVERLAPPEDWINDOW, int _posX = 0, int _posY = 0);
-		~Application() = default;
+		virtual ~Application();
 
 		Application(Application&) = delete;
 		Application& operator=(const Application&) = delete;
@@ -37,6 +38,7 @@ namespace Engine
 		auto* GetGameManager() { return mGameManager; }
 	private:
 		HINSTANCE mHInstance;
-		GameManager* mGameManager;
+		GameManager* const mGameManager;
+		Display::IDisplayDevice* mDisplayDevice;
 	};
 }

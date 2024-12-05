@@ -1,44 +1,91 @@
 #include "pch.h"
 #include "Window.h"
 
-HWND Display::Window::GetHandle()
+namespace Display
 {
-	return HWND();
-}
+	Window::Window(HWND _Hwnd, WindowDesc* _pWndDesc)
+		: mHwnd(_Hwnd)
+		, mHParent((*_pWndDesc).WndParent->GetHandle())
+		, mTitle((*_pWndDesc).Title)
+		, mPosition((*_pWndDesc).Position)
+		, mSize((*_pWndDesc).Size)
+	{
+	}
 
-const WCHAR* Display::Window::GetTitle()
-{
-	return nullptr;
-}
+	Window::~Window()
+	{
+	}
 
-RECT Display::Window::GetRect()
-{
-	return RECT();
-}
+	inline HWND Window::GetHandle()
+	{
+		return mHwnd;
+	}
 
-POINT Display::Window::GetPosition()
-{
-	return POINT();
-}
+	inline const WCHAR* Window::GetTitle()
+	{
+		return mTitle;
+	}
 
-POINT Display::Window::GetSize()
-{
-	return POINT();
-}
+	inline RECT Window::GetRect()
+	{
+		return RECT();
+	}
 
-void Display::Window::SetPosition()
-{
-}
+	inline POINT Window::GetPosition()
+	{
+		return mPosition;
+	}
 
-void Display::Window::SetSize()
-{
-}
+	inline POINT Window::GetSize()
+	{
+		return mSize;
+	}
 
-void Display::Window::SetFocus()
-{
-}
+	inline HWND Window::GetParentHandle()
+	{
+		return mHParent;
+	}
 
-bool Display::Window::IsFocusing()
-{
-	return false;
+	inline BOOL Window::SetPosition(POINT _xy)
+	{
+		BOOL res;
+		res = MoveWindow(mHwnd
+			, static_cast<int>(_xy.x)
+			, static_cast<int>(_xy.y)
+			, static_cast<int>(mSize.x + _xy.x)
+			, static_cast<int>(mSize.y + _xy.y)
+			, TRUE);
+		if (res)
+		{
+			mPosition = _xy;
+		}
+		return res;
+	}
+
+	inline BOOL Window::SetSize(POINT _wh)
+	{
+		BOOL res;
+		res = SetWindowPos(mHwnd
+			, HWND_TOP
+			, static_cast<int>(mPosition.x)
+			, static_cast<int>(mPosition.y)
+			, static_cast<int>(_wh.x)
+			, static_cast<int>(_wh.y)
+			, SWP_NOMOVE);
+		if (res)
+		{
+			mSize = _wh;
+		}
+		return res;
+	}
+
+	inline void Window::SetFocus()
+	{
+		::SetFocus(mHwnd);
+	}
+
+	bool Window::IsFocusing()
+	{
+		return false;
+	}
 }
