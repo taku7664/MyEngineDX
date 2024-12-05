@@ -1,19 +1,31 @@
 #include "pch.h"
 #include "Window.h"
+#include "DisplayDevice.h"
 
 namespace Display
 {
-	Window::Window(HWND _Hwnd, WindowDesc* _pWndDesc)
+	Window::Window(DisplayDevice* _pDevice, HINSTANCE _hInstance, HWND _Hwnd, WindowDesc* _pWndDesc)
 		: mHwnd(_Hwnd)
-		, mHParent((*_pWndDesc).WndParent->GetHandle())
-		, mTitle((*_pWndDesc).Title)
+		, mTitle((*_pWndDesc).WndClass.lpszClassName)
+		, mHParent(((*_pWndDesc).WndParent == nullptr) ? nullptr : (*_pWndDesc).WndParent->GetHandle())
 		, mPosition((*_pWndDesc).Position)
 		, mSize((*_pWndDesc).Size)
+		, mDevice(_pDevice)
 	{
 	}
 
 	Window::~Window()
 	{
+		if (mHwnd)
+		{
+			mDevice->DestroyDisplay(mHwnd);
+			DestroyWindow(mHwnd);
+			mHwnd = nullptr;
+			if (!UnregisterClass(mTitle, mHInstance))
+			{
+				throw std::runtime_error("Failed to unregister window class.");
+			}
+		}
 	}
 
 	inline HWND Window::GetHandle()

@@ -6,12 +6,38 @@ TestApp* TestApp::Instance = nullptr;
 BOOL TestApp::OnPreInitialize()
 {
 	Instance = this;
-
+	
 	return TRUE;
 }
 
 BOOL TestApp::OnPostInitialize()
 {
+	{
+		Display::WindowDesc winDecs;
+		winDecs.Size = { 1024, 768 };
+		winDecs.WndStyle = WS_OVERLAPPEDWINDOW;
+		winDecs.WndClass.lpszClassName = L"Test";
+		winDecs.WndClass.lpfnWndProc = WinProc;
+		if (S_OK != GetDisplayDevice()->CreateWindowDisplay(&winDecs, &mWindow))
+		{
+			return FALSE;
+		}
+		mWindow->SetPosition({ 500, 200 });
+		GetDisplayDevice()->DestroyDisplay(mWindow->GetHandle());
+	}
+	{
+		Display::WindowDesc winDecs;
+		winDecs.Size = { 1024, 768 };
+		winDecs.WndStyle = WS_OVERLAPPEDWINDOW;
+		winDecs.WndClass.lpszClassName = L"Test";
+		winDecs.WndClass.lpfnWndProc = WinProc;
+		if (S_OK != GetDisplayDevice()->CreateWindowDisplay(&winDecs, &mWindow))
+		{
+			return FALSE;
+		}
+		mWindow->SetPosition({ 500, 200 });
+	}
+
 	GameManager* gmMng = GetGameManager();
 	if (nullptr == gmMng) return FALSE;
 	WorldManager* wrdMng = gmMng->GetWorldManager();
@@ -29,5 +55,40 @@ void TestApp::OnPreFinalization()
 
 void TestApp::OnPostFinalization()
 {
-	SAFE_DELETE(Instance)
+}
+
+LRESULT CALLBACK WinProc(HWND _hwnd, UINT _msg, WPARAM _wParam, LPARAM _lParam)
+{
+	TestApp* pApp = TestApp::Instance;
+	switch (_msg)
+	{
+	case WM_CREATE:
+		break;
+
+	case WM_SIZE:
+		break;
+
+	case WM_MOVE:
+		break;
+
+	case WM_SYSKEYDOWN:
+	case WM_SYSKEYUP:
+		if (_wParam == VK_MENU)
+			return 0;
+		break;
+
+	case WM_SETFOCUS:
+		break;
+
+	case WM_DESTROY:
+		pApp->GetDisplayDevice()->DestroyDisplay(_hwnd);
+		break;
+
+	case WM_CLOSE:
+		pApp->ShutDown();
+		break;
+	default:
+		return DefWindowProc(_hwnd, _msg, _wParam, _lParam);
+	}
+	return 0;
 }

@@ -6,27 +6,22 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_ LPWSTR    lpCmdLine,
     _In_ int       nCmdShow)
 {
-    TestApp App(hInstance,
-        L"Test",                // 타이틀 제목
-        1024, 768,              // 윈도우 크기
-        WS_OVERLAPPEDWINDOW);   // 윈도우 스타일
+    TestApp App(hInstance);
 #ifdef _DEBUG
-    EditorApp Editor(hInstance,
-        L"Editor",              // 타이틀 제목
-        1024, 768,              // 윈도우 크기
-        WS_OVERLAPPEDWINDOW);   // 윈도우 스타일
+    //EditorApp Editor(hInstance);
 #endif // DEBUG
-
     bool InitApp = App.Initialize();
 #ifdef _DEBUG
-    bool InitEdit = Editor.Initialize();
+    bool InitEdit = true;
+    //InitEdit = Editor.Initialize();
 #endif // DEBUG
 
-    if (InitApp && InitEdit)
+    if (InitApp)
     {
         App.Run();
 #ifdef _DEBUG
-        Editor.Run();
+        //if(InitEdit)
+            //Editor.Run();
 #endif // DEBUG
     }
 

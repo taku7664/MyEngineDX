@@ -1,11 +1,16 @@
 #pragma once
 #include "World/WorldManager.h"
 
+namespace Engine
+{
+	class Application;
+}
+
 class GameManager
 	: public Engine::IEngineCycle
 {
 public:
-	GameManager();
+	GameManager(Engine::Application* _pApp);
 	~GameManager() = default;
 public:
 	BOOL Initialize();
@@ -22,8 +27,10 @@ public:
 public:
 
 public:
+	auto* GetApplication()	{ return mApplication; }
 	auto* GetWorldManager() { return mWorldManager; }
 private:
+	Engine::Application*  mApplication;
 	WorldManager* mWorldManager;
 
 	float mFixedUpdateTick;

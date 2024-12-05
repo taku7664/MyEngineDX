@@ -7,7 +7,6 @@ namespace Display
 	class IConsole;
 	struct DisplayDesc
 	{
-		const WCHAR* Title = L"";
 	    POINT Position = { 0,0 };
 		POINT Size = { 0,0 };
 	};

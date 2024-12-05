@@ -4,9 +4,9 @@
 
 namespace Engine
 {
-	Application::Application(HINSTANCE _hInstance, const WCHAR* _title, int _width, int _height, DWORD _style, int _posX, int _posY)
+	Application::Application(HINSTANCE _hInstance)
 		: mHInstance(_hInstance), IsShutdown(false)
-		, mGameManager(new GameManager()), mDisplayDevice(nullptr)
+		, mGameManager(new GameManager(this)), mDisplayDevice(nullptr)
 	{
 	}
 	Application::~Application()
@@ -40,9 +40,5 @@ namespace Engine
 		mGameManager->Finalization();
 
 		OnPostFinalization();
-	}
-	void Application::ShutDown()
-	{
-		IsShutdown = true;
 	}
 }

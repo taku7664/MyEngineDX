@@ -24,10 +24,15 @@ namespace Display
 	public:
 		virtual HRESULT CreateWindowDisplay(WindowDesc* _pWindDesc, IWindow** _ppIWindow) = 0;
 		virtual HRESULT CreateConsoleDisplay(ConsoleDesc* _pConsoleDesc, IConsole** _ppIConsole) = 0;
+		virtual HRESULT DestroyDisplay(IDisplay*& _ppIDisplay) = 0;
+		virtual HRESULT DestroyDisplay(HWND _hwnd) = 0;
 	};
 
 	class IDisplay
 	{
+	public:
+		IDisplay() = default;
+		virtual ~IDisplay() = default;
 	public:
 		virtual HWND			GetHandle() = 0;
 		virtual const WCHAR*	GetTitle() = 0;
@@ -42,7 +47,8 @@ namespace Display
 	class IWindow : public IDisplay
 	{
 	public:
-		IWindow() {};
+		IWindow() = default;
+		virtual ~IWindow() = default;
 		IWindow(const IWindow& _other) = default;
 		IWindow(IWindow&& _other) noexcept = default;
 		IWindow& operator=(const IWindow& _other) = default;

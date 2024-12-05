@@ -16,7 +16,7 @@ namespace Display
     }
     HRESULT DisplayDevice::CreateWindowDisplay(WindowDesc* _pWndDesc, IWindow** _ppIWindow)
     {
-        if (!_pWndDesc || (*_ppIWindow))
+        if (!_pWndDesc)
         {
             return E_INVALIDARG;
         }
@@ -42,7 +42,9 @@ namespace Display
         HWND hParent = (*_pWndDesc).WndParent == nullptr ? nullptr : (*_pWndDesc).WndParent->GetHandle();
 
         HWND hwnd = CreateWindow(
-            (*_pWndDesc).Title, (*_pWndDesc).Title, (*_pWndDesc).WndStyle,
+            (*_pWndDesc).WndClass.lpszClassName,
+            (*_pWndDesc).WndClass.lpszClassName,
+            (*_pWndDesc).WndStyle,
             rect.left, rect.top, width, height,
             hParent, NULL, mHInstance, NULL);
 
@@ -50,14 +52,32 @@ namespace Display
         {
             return E_FAIL;
         }
-        (*_ppIWindow) = new Window(hwnd, _pWndDesc);
+        (*_ppIWindow) = new Window(this, mHInstance, hwnd, _pWndDesc);
+        mDisplays.insert(std::make_pair(hwnd, (*_ppIWindow)));
         if (!(*_ppIWindow))
         {
             return E_INVALIDARG;
         }
+
         ShowWindow(hwnd, SW_SHOWNORMAL);
         UpdateWindow(hwnd);
 
-        return E_NOTIMPL;
+        return S_OK;
+    }
+    HRESULT DisplayDevice::DestroyDisplay(IDisplay*& _pIDisplay)
+    {
+        return DestroyDisplay(_pIDisplay->GetHandle());
+    }
+    HRESULT DisplayDevice::DestroyDisplay(HWND _hwnd)
+    {
+        auto itr = mDisplays.find(_hwnd);
+        if (itr == mDisplays.end())
+        {
+            return E_FAIL;
+        };
+        IDisplay* pDisplay = (*itr).second;
+        mDisplays.erase(itr);
+        delete pDisplay;
+        return S_OK;
     }
 }

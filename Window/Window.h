@@ -3,11 +3,13 @@
 
 namespace Display
 {
+	class DisplayDevice;
+
 	class Window : public IWindow
 	{
 	public:
-		Window(HWND _Hwnd, WindowDesc* _pWndDesc);
-		~Window();
+		Window(DisplayDevice* _pDevice, HINSTANCE _hInstance, HWND _Hwnd, WindowDesc* _pWndDesc);
+		virtual ~Window();
 		Window(const Window& _other) = default;
 		Window(Window&& _other) noexcept = default;
 		Window& operator=(const Window& _other) = default;
@@ -31,5 +33,8 @@ namespace Display
 		const WCHAR* mTitle;
 		POINT mPosition;
 		POINT mSize;
+
+		HINSTANCE	   mHInstance;
+		DisplayDevice* mDevice;
 	};
 }
