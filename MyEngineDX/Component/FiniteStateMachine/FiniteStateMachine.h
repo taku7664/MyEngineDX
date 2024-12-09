@@ -19,7 +19,7 @@ namespace Component
 		virtual void Update() override;
 		virtual void LateUpdate() override;
 		virtual void PreRender() override;
-		virtual void Render(Graphics::D3DRenderer* _renderer) override;
+		virtual void Render(Graphics::IRenderer* _renderer) override;
 		virtual void PostRender() override;
 	private:
 	};

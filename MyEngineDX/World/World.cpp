@@ -47,13 +47,13 @@ void DXWorld::PreRender()
 	FOR_LOOP_ENTITY(mObjectGroups, PreRender());
 }
 
-void DXWorld::Render()
+void DXWorld::Render(GraphicsManager* _graphicsManager)
 {
 	if (mWorldTransform)
 	{
 		mWorldTransform->CalculateMatrix();
 	}
-	FOR_LOOP_ENTITY(mObjectGroups, Render());
+	FOR_LOOP_ENTITY(mObjectGroups, Render(_graphicsManager));
 }
 
 void DXWorld::PostRender()

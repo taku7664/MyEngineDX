@@ -26,7 +26,7 @@ namespace Component
 	void FiniteStateMachine::PreRender()
 	{
 	}
-	void FiniteStateMachine::Render(Graphics::D3DRenderer* _renderer)
+	void FiniteStateMachine::Render(Graphics::IRenderer* _renderer)
 	{
 	}
 	void FiniteStateMachine::PostRender()

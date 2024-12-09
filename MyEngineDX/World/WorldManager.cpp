@@ -60,11 +60,11 @@ void WorldManager::PreRender()
 	}
 }
 
-void WorldManager::Render()
+void WorldManager::Render(GraphicsManager* _graphicsManager)
 {
 	if (mCurrActiveWorld){
 		mCurrActiveWorld->OnRender();
-		UPDATE_ENTITY(mCurrActiveWorld, Render())
+		UPDATE_ENTITY(mCurrActiveWorld, Render(_graphicsManager))
 	}
 }
 

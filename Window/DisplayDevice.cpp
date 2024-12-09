@@ -64,9 +64,9 @@ namespace Display
 
         return S_OK;
     }
-    HRESULT DisplayDevice::DestroyDisplay(IDisplay*& _pIDisplay)
+    HRESULT DisplayDevice::DestroyDisplay(IDisplay** _ppDisplay)
     {
-        return DestroyDisplay(_pIDisplay->GetHandle());
+        return DestroyDisplay((*_ppDisplay)->GetHandle());
     }
     HRESULT DisplayDevice::DestroyDisplay(HWND _hwnd)
     {

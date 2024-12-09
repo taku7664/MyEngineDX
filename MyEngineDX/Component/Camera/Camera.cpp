@@ -64,7 +64,7 @@ namespace Component
 		Graphics::D3DGraphicsDevice::SetViewports(1, &mViewport);
 
 	}
-	void Camera::Render(Graphics::D3DRenderer* _renderer)
+	void Camera::Render(Graphics::IRenderer* _renderer)
 	{
 	}
 	void Camera::PostRender()

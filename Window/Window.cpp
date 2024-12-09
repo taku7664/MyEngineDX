@@ -11,6 +11,7 @@ namespace Display
 		, mPosition((*_pWndDesc).Position)
 		, mSize((*_pWndDesc).Size)
 		, mDevice(_pDevice)
+		, mHInstance(nullptr)
 	{
 	}
 
@@ -21,10 +22,7 @@ namespace Display
 			mDevice->DestroyDisplay(mHwnd);
 			DestroyWindow(mHwnd);
 			mHwnd = nullptr;
-			if (!UnregisterClass(mTitle, mHInstance))
-			{
-				throw std::runtime_error("Failed to unregister window class.");
-			}
+			UnregisterClass(mTitle, mHInstance);
 		}
 	}
 

@@ -12,37 +12,26 @@ BOOL TestApp::OnPreInitialize()
 
 BOOL TestApp::OnPostInitialize()
 {
-	{
-		Display::WindowDesc winDecs;
-		winDecs.Size = { 1024, 768 };
-		winDecs.WndStyle = WS_OVERLAPPEDWINDOW;
-		winDecs.WndClass.lpszClassName = L"Test";
-		winDecs.WndClass.lpfnWndProc = WinProc;
-		if (S_OK != GetDisplayDevice()->CreateWindowDisplay(&winDecs, &mWindow))
-		{
-			return FALSE;
-		}
-		mWindow->SetPosition({ 500, 200 });
-		GetDisplayDevice()->DestroyDisplay(mWindow->GetHandle());
-	}
-	{
-		Display::WindowDesc winDecs;
-		winDecs.Size = { 1024, 768 };
-		winDecs.WndStyle = WS_OVERLAPPEDWINDOW;
-		winDecs.WndClass.lpszClassName = L"Test";
-		winDecs.WndClass.lpfnWndProc = WinProc;
-		if (S_OK != GetDisplayDevice()->CreateWindowDisplay(&winDecs, &mWindow))
-		{
-			return FALSE;
-		}
-		mWindow->SetPosition({ 500, 200 });
-	}
-
 	GameManager* gmMng = GetGameManager();
 	if (nullptr == gmMng) return FALSE;
 	WorldManager* wrdMng = gmMng->GetWorldManager();
 	if (nullptr == wrdMng) return FALSE;
-
+	IGraphicsManager* grpMng = gmMng->GetGraphicsManager();
+	{
+		Display::WindowDesc winDecs;
+		winDecs.Size = { 1024, 768 };
+		winDecs.WndStyle = WS_OVERLAPPEDWINDOW;
+		winDecs.WndClass.lpszClassName = L"Test";
+		winDecs.WndClass.lpfnWndProc = WinProc;
+		if (S_OK != CreateWindowDisplay(&winDecs, &mWindow))
+		{
+			return FALSE;
+		}
+		mWindow->SetPosition({ 500, 200 });
+		Graphics::RenderTarget* pRenderTarget;
+		grpMng->GetDevice()->CreateRenderTarget(mWindow->GetHandle(), &pRenderTarget);
+		grpMng->GetRenderer()->SetRenderTarget(pRenderTarget);
+	}
 	wrdMng->CreateWorld<TestWorld>(L"TestWorld", L"Deafult");
 	wrdMng->SetActiveWorld(L"TestWorld");
 	return TRUE;
@@ -81,7 +70,7 @@ LRESULT CALLBACK WinProc(HWND _hwnd, UINT _msg, WPARAM _wParam, LPARAM _lParam)
 		break;
 
 	case WM_DESTROY:
-		pApp->GetDisplayDevice()->DestroyDisplay(_hwnd);
+		pApp->DestroyDisplay(_hwnd);
 		break;
 
 	case WM_CLOSE:

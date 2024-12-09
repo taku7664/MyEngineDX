@@ -24,7 +24,7 @@ namespace Display
 	public:
 		virtual HRESULT CreateWindowDisplay(WindowDesc* _pWindDesc, IWindow** _ppIWindow) = 0;
 		virtual HRESULT CreateConsoleDisplay(ConsoleDesc* _pConsoleDesc, IConsole** _ppIConsole) = 0;
-		virtual HRESULT DestroyDisplay(IDisplay*& _ppIDisplay) = 0;
+		virtual HRESULT DestroyDisplay(IDisplay** _ppDisplay) = 0;
 		virtual HRESULT DestroyDisplay(HWND _hwnd) = 0;
 	};
 

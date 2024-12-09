@@ -1,5 +1,10 @@
 #pragma once
-
+namespace Graphics
+{
+	class GraphicsDevice;
+	class Renderer;
+	class RenderTarget;
+}
 namespace Engine
 {
 	class IEngineCycle
@@ -9,7 +14,7 @@ namespace Engine
 		virtual void Update() = 0;
 		virtual void PostUpdate() = 0;
 		virtual void PreRender() = 0;
-		virtual void Render() = 0;
+		virtual void Render(GraphicsManager* _graphicsManager) = 0;
 		virtual void PostRender() = 0;
 	};
 }

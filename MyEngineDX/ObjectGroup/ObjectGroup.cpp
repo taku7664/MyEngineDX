@@ -61,12 +61,12 @@ void ObjectGroup::PreRender()
 	}
 }
 
-void ObjectGroup::Render()
+void ObjectGroup::Render(GraphicsManager* _graphicsManager)
 {
 	for (GameObject*& obj : mObjects)
 	{
 		if (obj->GetState() == EntityState::Active)
-			obj->Render();
+			obj->Render(_graphicsManager);
 	}
 }
 

@@ -27,7 +27,7 @@ namespace Component
 		virtual void Update() override = 0;
 		virtual void PostUpdate() override = 0;
 		virtual void PreRender() override = 0;
-		virtual void Render() override = 0;
+		virtual void Render(GraphicsManager* _graphicsManager) override = 0;
 		virtual void PostRender() override = 0;
 		virtual void Start() {}
 	public:

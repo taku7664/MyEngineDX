@@ -34,13 +34,17 @@ namespace Engine
 		virtual void OnPostRender() {};
 	public:
 		void  ShutDown() { IsShutdown = true; }
-		auto* GetGameManager() { return mGameManager; }
-		auto* GetDisplayDevice() { return mDisplayDevice; }
-	protected:
+		HRESULT CreateWindowDisplay(Display::WindowDesc* _pWinDesc, Display::IWindow** _ppWindow);
+		HRESULT DestroyDisplay(HWND _hWnd);
+		HRESULT DestroyDisplay(Display::IDisplay** _ppDisplay);
+	private:
 		HINSTANCE mHInstance;
 		BOOL IsShutdown;
 		GameManager* const mGameManager;
-		Display::IDisplayDevice* mDisplayDevice;
+	public:
+		auto* GetGameManager() { return mGameManager; }
+	private:
+		auto* GetDisplayDevice() { return mDisplayDevice; }
 		friend class GameManager;
 	};
 }

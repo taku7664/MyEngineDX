@@ -85,7 +85,7 @@ void GameObject::PreRender()
 	}
 }
 
-void GameObject::Render()
+void GameObject::Render(GraphicsManager* _graphicsManager)
 {
 	if (transform)
 	{
@@ -96,7 +96,7 @@ void GameObject::Render()
 		for (auto& comp : compArr)
 		{
 			if (comp->IsActive())
-				comp->Render();
+				comp->Render(_graphicsManager);
 		}
 	}
 }

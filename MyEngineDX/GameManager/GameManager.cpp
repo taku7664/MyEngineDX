@@ -4,14 +4,17 @@
 
 GameManager::GameManager(Engine::Application* _pApp)
 	: mApplication(_pApp)
-	, mWorldManager(nullptr)
+	, mWorldManager(new WorldManager(this))
+	, mGraphicsManager(new GraphicsManager())
 	, mFixedUpdateTick(0.02f)
 {
 }
 
 BOOL GameManager::Initialize()
 {
-	mWorldManager = new WorldManager(this);
+	if (!mGraphicsManager->Initialize()) return FALSE;
+
+	if (S_OK != Display::CreateIDisplayDevice(mApplication->mHInstance, &mDisplayDevice)) return FALSE;
 
 	return TRUE;
 }
@@ -34,7 +37,7 @@ void GameManager::Run()
 		Update();
 		PostUpdate();
 		PreRender();
-		//Render(m_renderer);
+		Render(mGraphicsManager->GetRenderer());
 		PostRender();
 		//Input::Reset();
 	}
@@ -43,6 +46,7 @@ void GameManager::Run()
 void GameManager::Finalization()
 {
 	SAFE_DELETE(mWorldManager)
+	SAFE_DELETE(mGraphicsManager)
 }
 
 void GameManager::FixedUpdate()
@@ -53,6 +57,8 @@ void GameManager::FixedUpdate()
 	while (counter >= mFixedUpdateTick)
 	{
 		counter -= mFixedUpdateTick;
+		if (mApplication)
+			mApplication->OnFixedUpdate();
 		if (mWorldManager)
 		{
 			mWorldManager->FixedUpdate();
@@ -92,12 +98,17 @@ void GameManager::PreRender()
 		mWorldManager->PreRender();
 }
 
-void GameManager::Render()
+void GameManager::Render(GraphicsManager* _graphicsManager)
 {
+	//_renderer->SetRenderTarget()
+	_graphicsManager->BeginRender();
+
 	if (mApplication)
 		mApplication->OnRender();
 	if (mWorldManager)
-		mWorldManager->Render();
+		mWorldManager->Render(_graphicsManager);
+
+	_graphicsManager->EndRender();
 }
 
 void GameManager::PostRender()
