@@ -87,6 +87,12 @@
     <ClInclude Include="Graphics\Wrapper\InputLayout.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Viewport\Viewport.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewport\ViewportManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -159,6 +165,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Wrapper\InputLayout.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Viewport\Viewport.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Viewport\ViewportManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

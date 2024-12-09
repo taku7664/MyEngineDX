@@ -4,19 +4,10 @@
 
 GraphicsManager::GraphicsManager()
 {
+    Graphics::CreateGraphicsDeviceAndRenderer(&mGraphicsDevice, &mRenderer);
 }
 
 GraphicsManager::~GraphicsManager()
-{
-}
-
-BOOL GraphicsManager::Initialize()
-{
-    Graphics::CreateGraphicsDeviceAndRenderer(&mGraphicsDevice, &mRenderer);
-    return TRUE;
-}
-
-void GraphicsManager::Finalization()
 {
     SAFE_RELEASE(mRenderer)
     SAFE_RELEASE(mGraphicsDevice)

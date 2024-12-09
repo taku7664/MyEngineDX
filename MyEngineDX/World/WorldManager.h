@@ -7,7 +7,7 @@ class WorldManager
 	: public Engine::IEngineCycle
 {
 public:
-	WorldManager(GameManager* _gmMng);
+	WorldManager();
 	~WorldManager();
 public:
 	virtual void FixedUpdate() override;
@@ -28,8 +28,6 @@ private:
 
 	std::queue<DXWorld*> mCreateQueue;
 	std::queue<DXWorld*> mDestroyQueue;
-
-	GameManager* const mGameManager;
 };
 
 template<class T>

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Application.h"
+#include "../Window/IDisplay.h"
 
 namespace Engine
 {
@@ -16,6 +17,8 @@ namespace Engine
 	BOOL Application::Initialize()
 	{
 		if (FALSE == OnPreInitialize()) return FALSE;
+
+		if (S_OK != Display::CreateIDisplayDevice(mHInstance, &mDisplayDevice)) return FALSE;
 
 		if (FALSE == mGameManager->Initialize()) return FALSE;
 

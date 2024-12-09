@@ -1,7 +1,6 @@
 #pragma once
 #include "pch.h"
 #include "GameManager/GameManager.h"
-#include "../Window/IDisplay.h"
 
 namespace Engine
 {
@@ -41,10 +40,10 @@ namespace Engine
 		HINSTANCE mHInstance;
 		BOOL IsShutdown;
 		GameManager* const mGameManager;
+		Display::IDisplayDevice* mDisplayDevice;
 	public:
-		auto* GetGameManager() { return mGameManager; }
+		inline auto* GetGameManager() const { return mGameManager; }
 	private:
-		auto* GetDisplayDevice() { return mDisplayDevice; }
 		friend class GameManager;
 	};
 }

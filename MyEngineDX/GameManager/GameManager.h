@@ -1,5 +1,5 @@
 #pragma once
-#include "World/WorldManager.h"
+#include "Viewport/ViewportManager.h"
 #include "Graphics/GraphicsManager.h"
 
 namespace Engine
@@ -27,13 +27,12 @@ public:
 	virtual void PostRender() override;
 public:
 public:
-	Engine::Application* GetApplication()	{ return mApplication; }
-	WorldManager*		 GetWorldManager()	{ return mWorldManager; }
+	Engine::Application* GetApplication()	  { return mApplication; }
+	ViewportManager*	 GetViewportManager() { return mViewportManager; }
 	IGraphicsManager*	 GetGraphicsManager() { return mGraphicsManager; }
 private:
-	Engine::Application*  mApplication;
-	WorldManager* mWorldManager;
-	GraphicsManager* mGraphicsManager;
-	Display::IDisplayDevice* mDisplayDevice;
+	Engine::Application*	 mApplication;
+	ViewportManager*		 mViewportManager;
+	GraphicsManager*		 mGraphicsManager;
 	float mFixedUpdateTick;
 };

@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "WorldManager.h"
 
-WorldManager::WorldManager(GameManager* _gmMng)
-	: mCurrActiveWorld(nullptr), mNextActiveWorld(nullptr), mGameManager(_gmMng)
+WorldManager::WorldManager()
+	: mCurrActiveWorld(nullptr), mNextActiveWorld(nullptr)
 {
 }
 

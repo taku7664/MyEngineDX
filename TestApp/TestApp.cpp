@@ -14,26 +14,62 @@ BOOL TestApp::OnPostInitialize()
 {
 	GameManager* gmMng = GetGameManager();
 	if (nullptr == gmMng) return FALSE;
-	WorldManager* wrdMng = gmMng->GetWorldManager();
-	if (nullptr == wrdMng) return FALSE;
-	IGraphicsManager* grpMng = gmMng->GetGraphicsManager();
+	ViewportManager* vptMng = gmMng->GetViewportManager();
 	{
-		Display::WindowDesc winDecs;
-		winDecs.Size = { 1024, 768 };
-		winDecs.WndStyle = WS_OVERLAPPEDWINDOW;
-		winDecs.WndClass.lpszClassName = L"Test";
-		winDecs.WndClass.lpfnWndProc = WinProc;
-		if (S_OK != CreateWindowDisplay(&winDecs, &mWindow))
+		IGraphicsManager* grpMng = gmMng->GetGraphicsManager();
 		{
-			return FALSE;
+			Display::WindowDesc winDecs;
+			winDecs.Size = { 1024, 768 };
+			winDecs.WndStyle = WS_OVERLAPPEDWINDOW;
+			winDecs.WndClass.lpszClassName = L"Test";
+			winDecs.WndClass.lpfnWndProc = WinProc;
+			if (S_OK != CreateWindowDisplay(&winDecs, &mWindow))
+			{
+				return FALSE;
+			}
+			mWindow->SetPosition({ 500, 200 });
+			Graphics::RenderTarget* pRenderTarget;
+			grpMng->GetDevice()->CreateRenderTarget(mWindow->GetHandle(), &pRenderTarget);
+			grpMng->GetRenderer()->SetRenderTarget(pRenderTarget);
 		}
-		mWindow->SetPosition({ 500, 200 });
-		Graphics::RenderTarget* pRenderTarget;
-		grpMng->GetDevice()->CreateRenderTarget(mWindow->GetHandle(), &pRenderTarget);
-		grpMng->GetRenderer()->SetRenderTarget(pRenderTarget);
+		ViewportScene* pViewport = vptMng->CreateViewport(mWindow);
+		if (nullptr == pViewport) return FALSE;
+		WorldManager* wrdMng = pViewport->GetWorldManager();
+		if (nullptr == wrdMng) return FALSE;
+
+		wrdMng->CreateWorld<TestWorld>(L"TestWorld", L"Deafult");
+		wrdMng->SetActiveWorld(L"TestWorld");
 	}
-	wrdMng->CreateWorld<TestWorld>(L"TestWorld", L"Deafult");
-	wrdMng->SetActiveWorld(L"TestWorld");
+	{
+		IGraphicsManager* grpMng = gmMng->GetGraphicsManager();
+		{
+			Display::IWindow* subWindow;
+			Display::WindowDesc winDecs;
+			winDecs.Size = { 300, 500 };
+			winDecs.WndStyle = WS_OVERLAPPEDWINDOW;
+			winDecs.WndClass.lpszClassName = L"Editor";
+			winDecs.WndClass.lpfnWndProc = WinProc;
+			winDecs.WndParent = mWindow;
+			if (S_OK != CreateWindowDisplay(&winDecs, &subWindow))
+			{
+				return FALSE;
+			}
+			subWindow->SetPosition({ 1000, 200 });
+			Graphics::RenderTarget* pRenderTarget;
+			grpMng->GetDevice()->CreateRenderTarget(subWindow->GetHandle(), &pRenderTarget);
+			grpMng->GetRenderer()->SetRenderTarget(pRenderTarget);
+
+			ViewportScene* pViewport = vptMng->CreateViewport(subWindow);
+			if (nullptr == pViewport) return FALSE;
+			WorldManager* wrdMng = pViewport->GetWorldManager();
+			if (nullptr == wrdMng) return FALSE;
+
+			wrdMng->CreateWorld<TestWorld>(L"TestWorld", L"Deafult");
+			wrdMng->SetActiveWorld(L"TestWorld");
+		}
+		
+	}
+
 	return TRUE;
 }
 

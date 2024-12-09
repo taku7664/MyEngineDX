@@ -62,8 +62,8 @@ namespace Display
 		res = MoveWindow(mHwnd
 			, static_cast<int>(_xy.x)
 			, static_cast<int>(_xy.y)
-			, static_cast<int>(mSize.x + _xy.x)
-			, static_cast<int>(mSize.y + _xy.y)
+			, static_cast<int>(mSize.x)
+			, static_cast<int>(mSize.y)
 			, TRUE);
 		if (res)
 		{
@@ -77,8 +77,7 @@ namespace Display
 		BOOL res;
 		res = SetWindowPos(mHwnd
 			, HWND_TOP
-			, static_cast<int>(mPosition.x)
-			, static_cast<int>(mPosition.y)
+			, 0, 0 
 			, static_cast<int>(_wh.x)
 			, static_cast<int>(_wh.y)
 			, SWP_NOMOVE);

@@ -21,9 +21,6 @@ public:
 	GraphicsManager();
 	~GraphicsManager();
 public:
-	BOOL Initialize();
-	void Finalization();
-public:
 	void BeginRender();
 	void EndRender();
 public:

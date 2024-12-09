@@ -40,4 +40,5 @@
 #include "Helper/Entity/Entity.h"
 #include "Helper/Factory/Factory.h"
 
+#include "../Window/IDisplay.h"
 #include "Graphics/Graphics.h"
