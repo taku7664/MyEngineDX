@@ -18,16 +18,21 @@ namespace Graphics
 				layouts.emplace_back(desc);
 			}
 		}
-		HRESULT hr = _pDevice->GetDevice()->CreateInputLayout(
-			layouts.data(),
-			static_cast<UINT>(layouts.size()),
-			_pVertexShader->GetBufferPointer(),
-			_pVertexShader->GetBufferSize(),
-			&mInputLayout);
-		if ((*_ppHr))
+		ID3D11Device* pDevice = _pDevice->GetDevice();
+		if (pDevice)
 		{
-			*(*_ppHr) = hr;
+			HRESULT hr = pDevice->CreateInputLayout(
+				layouts.data(),
+				static_cast<UINT>(layouts.size()),
+				_pVertexShader->GetBufferPointer(),
+				_pVertexShader->GetBufferSize(),
+				&mInputLayout);
+			if ((*_ppHr))
+			{
+				*(*_ppHr) = hr;
+			}
 		}
+		
 	}
 	InputLayout::~InputLayout()
 	{

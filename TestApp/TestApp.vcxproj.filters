@@ -33,9 +33,6 @@
     <ClCompile Include="EditorApp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Viewport\TestViewport.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestApp.h">
@@ -51,9 +48,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="EditorApp.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Viewport\TestViewport.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

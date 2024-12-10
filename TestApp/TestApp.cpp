@@ -45,8 +45,8 @@ BOOL TestApp::OnPostInitialize()
 		{
 			Display::IWindow* subWindow;
 			Display::WindowDesc winDecs;
-			winDecs.Size = { 300, 500 };
-			winDecs.WndStyle = WS_OVERLAPPEDWINDOW;
+			winDecs.Size = { 400, 600 };
+			winDecs.WndStyle = WS_POPUP | WS_VISIBLE;
 			winDecs.WndClass.lpszClassName = L"Editor";
 			winDecs.WndClass.lpfnWndProc = WinProc;
 			winDecs.WndParent = mWindow;

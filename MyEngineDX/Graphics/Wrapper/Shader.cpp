@@ -13,7 +13,7 @@ namespace Graphics
 #endif
 		ID3DBlob* pErrorBlob = nullptr;
 		HRESULT hr = D3DCompileFromFile(_path, nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, _entryPoint, _shaderModel,
-			dwShaderFlags, 0, &pBlob, &pErrorBlob);
+			dwShaderFlags, 0, &mBlob, &pErrorBlob);
 		if (FAILED(hr))
 		{
 			if (pErrorBlob)
@@ -32,8 +32,8 @@ namespace Graphics
 		: Shader(_pDevice, _path, _entryPoint, _shaderModel)
 	{
 		HRESULT hr = _pDevice->GetDevice()->CreateVertexShader(
-			pBlob->GetBufferPointer(),
-			pBlob->GetBufferSize(),
+			mBlob->GetBufferPointer(),
+			mBlob->GetBufferSize(),
 			NULL,
 			&mVertexShader);
 		if (FAILED(hr))
@@ -50,8 +50,8 @@ namespace Graphics
 		: Shader(_pDevice, _path, _entryPoint, _shaderModel)
 	{
 		HRESULT hr = _pDevice->GetDevice()->CreatePixelShader(
-			pBlob->GetBufferPointer(),
-			pBlob->GetBufferSize(),
+			mBlob->GetBufferPointer(),
+			mBlob->GetBufferSize(),
 			NULL,
 			&mPixelShader);
 		if (FAILED(hr))

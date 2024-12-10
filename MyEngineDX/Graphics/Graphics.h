@@ -1,4 +1,5 @@
 #pragma once
+#include "Graphics/GraphicsEnum.h"
 #include "Graphics/GraphicsDevice.h"
 #include "Graphics/GraphicsRenderer.h"
 #include "Graphics/GraphicsRenderTarget.h"

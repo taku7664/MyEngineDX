@@ -139,7 +139,6 @@
     <ClCompile Include="Script\Test.cpp" />
     <ClCompile Include="Script\TestScript.cpp" />
     <ClCompile Include="TestApp.cpp" />
-    <ClCompile Include="Viewport\TestViewport.cpp" />
     <ClCompile Include="World\TestWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -147,7 +146,6 @@
     <ClInclude Include="Script\Test.h" />
     <ClInclude Include="Script\TestScript.h" />
     <ClInclude Include="TestApp.h" />
-    <ClInclude Include="Viewport\TestViewport.h" />
     <ClInclude Include="World\TestWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -17,6 +17,8 @@ namespace Graphics
 	private:
 		ID3D11InputLayout* mInputLayout;
 	public:
+		operator ID3D11InputLayout* () { return mInputLayout; }
+	public:
 		enum Format
 		{
 			UNKNOWN = 0,

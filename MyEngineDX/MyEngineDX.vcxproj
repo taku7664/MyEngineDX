@@ -147,6 +147,8 @@
     <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Component\MonoBehaviour.h" />
     <ClInclude Include="Component\Script\Script.h" />
+    <ClInclude Include="Graphics\GraphicsEnum.h" />
+    <ClInclude Include="Graphics\Wrapper\GraphicsBuffer.h" />
     <ClInclude Include="Graphics\GraphicsManager.h" />
     <ClInclude Include="Graphics\Graphics.h" />
     <ClInclude Include="Graphics\GraphicsRenderTarget.h" />
@@ -164,6 +166,8 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Helper\Transform\Transform3D.h" />
     <ClInclude Include="Graphics\Wrapper\Shader.h" />
+    <ClInclude Include="Graphics\Wrapper\SamplerState.h" />
+    <ClInclude Include="Graphics\Wrapper\GraphicsTextrue.h" />
     <ClInclude Include="TimeManager\Time.h" />
     <ClInclude Include="Viewport\ViewportManager.h" />
     <ClInclude Include="Viewport\Viewport.h" />
@@ -175,6 +179,8 @@
     <ClCompile Include="Component\Component.cpp" />
     <ClCompile Include="Component\MonoBehaviour.cpp" />
     <ClCompile Include="Component\Script\Script.cpp" />
+    <ClCompile Include="Graphics\GraphicsEnum.cpp" />
+    <ClCompile Include="Graphics\Wrapper\GraphicsBuffer.cpp" />
     <ClCompile Include="Graphics\GraphicsManager.cpp" />
     <ClCompile Include="Graphics\Graphics.cpp" />
     <ClCompile Include="Graphics\GraphicsRenderTarget.cpp" />
@@ -195,6 +201,8 @@
     </ClCompile>
     <ClCompile Include="Helper\Transform\Transform3D.cpp" />
     <ClCompile Include="Graphics\Wrapper\Shader.cpp" />
+    <ClCompile Include="Graphics\Wrapper\SamplerState.cpp" />
+    <ClCompile Include="Graphics\Wrapper\GraphicsTextrue.cpp" />
     <ClCompile Include="TimeManager\Time.cpp" />
     <ClCompile Include="Viewport\ViewportManager.cpp" />
     <ClCompile Include="Viewport\Viewport.cpp" />
